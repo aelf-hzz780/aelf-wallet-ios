@@ -474,3 +474,10 @@ After scanning, you also need to enter your password. You can also reset your pa
 "Please enter a custom address" = "Please enter a custom address";
 "Input errors, please re-enter" = "Input errors, please re-enter";
 "Please enter an address beginning with http" = "Please enter an address beginning with http";
+
+// Wallet Shutdown Migration
+"Wallet Shutdown Notice" = "Wallet Shutdown Notice";
+"Wallet shutdown message" = "The wallet has been shut down and is no longer usable. We recommend using the FairyVault mobile wallet to manage your assets.";
+"Download FairyVault" = "Download FairyVault:";
+"How to import your wallet" = "How to import your wallet:";
+"View Tutorial" = "View Tutorial";

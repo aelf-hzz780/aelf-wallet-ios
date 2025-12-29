@@ -98,6 +98,16 @@ extension AppDelegate {
             self.window?.rootViewController = walletNav
         }
         self.window?.makeKeyAndVisible()
+        
+        // 显示钱包关闭迁移弹窗
+        showWalletShutdownAlert()
+    }
+    
+    /// 显示钱包关闭提示弹窗，引导用户迁移到 FairyVault
+    func showWalletShutdownAlert() {
+        asyncMainDelay(duration: 0.5) {
+            WalletShutdownAlertView.show()
+        }
     }
     
     func checkBioMetricAuthen() {

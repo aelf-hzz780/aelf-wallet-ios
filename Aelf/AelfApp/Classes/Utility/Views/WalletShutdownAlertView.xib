@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WalletShutdownAlertView" customModule="AELF_Wallet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mainContainer">
+                    <rect key="frame" x="37" y="50" width="340" height="300"/>
+                    <subviews>
+                        <!-- Close Button -->
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="closeButton">
+                            <rect key="frame" x="300" y="10" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="closeBtnWidth"/>
+                                <constraint firstAttribute="height" constant="30" id="closeBtnHeight"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" title="✕">
+                                <color key="titleColor" red="0.47058823529411764" green="0.49803921568627452" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="closeAction"/>
+                            </connections>
+                        </button>
+                        <!-- Warning Icon -->
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning" translatesAutoresizingMaskIntoConstraints="NO" id="warningIcon">
+                            <rect key="frame" x="150" y="25" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="iconWidth"/>
+                                <constraint firstAttribute="height" constant="40" id="iconHeight"/>
+                            </constraints>
+                        </imageView>
+                        <!-- Title Label -->
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet Shutdown Notice" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="titleLabel">
+                            <rect key="frame" x="20" y="75" width="300" height="25"/>
+                            <fontDescription key="fontDescription" type="system" weight="bold" pointSize="18"/>
+                            <color key="textColor" red="0.90196078431372551" green="0.29411764705882354" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <!-- Message Label -->
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The wallet has been shut down and is no longer usable. We recommend using the FairyVault mobile wallet to manage your assets." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="messageLabel">
+                            <rect key="frame" x="20" y="110" width="300" height="60"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.47058823529411764" green="0.49803921568627452" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <!-- Download Section -->
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download FairyVault:" textAlignment="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="downloadTitleLabel">
+                            <rect key="frame" x="20" y="185" width="300" height="20"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <color key="textColor" red="0.035294117647058823" green="0.086274509803921567" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="downloadLinkButton">
+                            <rect key="frame" x="20" y="207" width="300" height="22"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="https://fairyvault.com/download">
+                                <color key="titleColor" red="0.38412314650000001" green="0.114183329" blue="0.70616668459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="downloadButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="downloadAction"/>
+                            </connections>
+                        </button>
+                        <!-- Tutorial Section -->
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to import your wallet:" textAlignment="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tutorialTitleLabel">
+                            <rect key="frame" x="20" y="240" width="300" height="20"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <color key="textColor" red="0.035294117647058823" green="0.086274509803921567" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tutorialLinkButton">
+                            <rect key="frame" x="20" y="262" width="300" height="22"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="View Tutorial">
+                                <color key="titleColor" red="0.38412314650000001" green="0.114183329" blue="0.70616668459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="tutorialButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="tutorialAction"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <!-- Close Button constraints -->
+                        <constraint firstItem="closeButton" firstAttribute="top" secondItem="mainContainer" secondAttribute="top" constant="10" id="closeBtnTop"/>
+                        <constraint firstAttribute="trailing" secondItem="closeButton" secondAttribute="trailing" constant="10" id="closeBtnTrailing"/>
+                        <!-- Warning Icon constraints -->
+                        <constraint firstItem="warningIcon" firstAttribute="top" secondItem="mainContainer" secondAttribute="top" constant="25" id="iconTop"/>
+                        <constraint firstItem="warningIcon" firstAttribute="centerX" secondItem="mainContainer" secondAttribute="centerX" id="iconCenterX"/>
+                        <!-- Title constraints -->
+                        <constraint firstItem="titleLabel" firstAttribute="top" secondItem="warningIcon" secondAttribute="bottom" constant="10" id="titleTop"/>
+                        <constraint firstItem="titleLabel" firstAttribute="leading" secondItem="mainContainer" secondAttribute="leading" constant="20" id="titleLeading"/>
+                        <constraint firstAttribute="trailing" secondItem="titleLabel" secondAttribute="trailing" constant="20" id="titleTrailing"/>
+                        <!-- Message constraints -->
+                        <constraint firstItem="messageLabel" firstAttribute="top" secondItem="titleLabel" secondAttribute="bottom" constant="10" id="messageTop"/>
+                        <constraint firstItem="messageLabel" firstAttribute="leading" secondItem="mainContainer" secondAttribute="leading" constant="20" id="messageLeading"/>
+                        <constraint firstAttribute="trailing" secondItem="messageLabel" secondAttribute="trailing" constant="20" id="messageTrailing"/>
+                        <!-- Download title constraints -->
+                        <constraint firstItem="downloadTitleLabel" firstAttribute="top" secondItem="messageLabel" secondAttribute="bottom" constant="20" id="downloadTitleTop"/>
+                        <constraint firstItem="downloadTitleLabel" firstAttribute="leading" secondItem="mainContainer" secondAttribute="leading" constant="20" id="downloadTitleLeading"/>
+                        <constraint firstAttribute="trailing" secondItem="downloadTitleLabel" secondAttribute="trailing" constant="20" id="downloadTitleTrailing"/>
+                        <!-- Download link constraints -->
+                        <constraint firstItem="downloadLinkButton" firstAttribute="top" secondItem="downloadTitleLabel" secondAttribute="bottom" constant="2" id="downloadLinkTop"/>
+                        <constraint firstItem="downloadLinkButton" firstAttribute="leading" secondItem="mainContainer" secondAttribute="leading" constant="20" id="downloadLinkLeading"/>
+                        <constraint firstAttribute="trailing" secondItem="downloadLinkButton" secondAttribute="trailing" constant="20" id="downloadLinkTrailing"/>
+                        <!-- Tutorial title constraints -->
+                        <constraint firstItem="tutorialTitleLabel" firstAttribute="top" secondItem="downloadLinkButton" secondAttribute="bottom" constant="15" id="tutorialTitleTop"/>
+                        <constraint firstItem="tutorialTitleLabel" firstAttribute="leading" secondItem="mainContainer" secondAttribute="leading" constant="20" id="tutorialTitleLeading"/>
+                        <constraint firstAttribute="trailing" secondItem="tutorialTitleLabel" secondAttribute="trailing" constant="20" id="tutorialTitleTrailing"/>
+                        <!-- Tutorial link constraints -->
+                        <constraint firstItem="tutorialLinkButton" firstAttribute="top" secondItem="tutorialTitleLabel" secondAttribute="bottom" constant="2" id="tutorialLinkTop"/>
+                        <constraint firstItem="tutorialLinkButton" firstAttribute="leading" secondItem="mainContainer" secondAttribute="leading" constant="20" id="tutorialLinkLeading"/>
+                        <constraint firstAttribute="trailing" secondItem="tutorialLinkButton" secondAttribute="trailing" constant="20" id="tutorialLinkTrailing"/>
+                        <constraint firstAttribute="bottom" secondItem="tutorialLinkButton" secondAttribute="bottom" constant="20" id="containerBottom"/>
+                        <!-- Container width -->
+                        <constraint firstAttribute="width" constant="340" id="containerWidth"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="mainContainer" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="containerCenterX"/>
+                <constraint firstItem="mainContainer" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="containerCenterY"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="safeArea"/>
+            <connections>
+                <outlet property="backgroundView" destination="mainContainer" id="bgViewConnection"/>
+                <outlet property="alertTitleLabel" destination="titleLabel" id="titleConnection"/>
+                <outlet property="alertMessageLabel" destination="messageLabel" id="messageConnection"/>
+                <outlet property="downloadTitleLabel" destination="downloadTitleLabel" id="downloadTitleConnection"/>
+                <outlet property="downloadLinkButton" destination="downloadLinkButton" id="downloadLinkConnection"/>
+                <outlet property="tutorialTitleLabel" destination="tutorialTitleLabel" id="tutorialTitleConnection"/>
+                <outlet property="tutorialLinkButton" destination="tutorialLinkButton" id="tutorialLinkConnection"/>
+                <outlet property="closeButton" destination="closeButton" id="closeButtonConnection"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="355.58035714285711"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="warning" width="40" height="40"/>
+    </resources>
+</document>
+

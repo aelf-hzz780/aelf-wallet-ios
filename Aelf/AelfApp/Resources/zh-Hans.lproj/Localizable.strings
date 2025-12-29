@@ -480,3 +480,10 @@
 "Please enter a custom address" = "请输入自定义地址";
 "Input errors, please re-enter" = "输入错误，请重新输入";
 "Please enter an address beginning with http" = "请输入以http开头的地址";
+
+// 钱包关闭迁移提示
+"Wallet Shutdown Notice" = "钱包关闭通知";
+"Wallet shutdown message" = "该钱包已停止服务，无法继续使用。我们建议您使用 FairyVault 移动钱包来管理您的资产。";
+"Download FairyVault" = "下载 FairyVault:";
+"How to import your wallet" = "如何导入您的钱包:";
+"View Tutorial" = "查看教程";
