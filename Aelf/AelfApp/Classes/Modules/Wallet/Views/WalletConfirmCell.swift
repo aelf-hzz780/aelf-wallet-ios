@@ -17,7 +17,7 @@ class WalletConfirmCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        bgView.cornerRadius = 8
+        bgView.layer.cornerRadius = 8
 
         aSelected = false
     }

@@ -48,7 +48,7 @@ class ShareAlertView: MessageView {
     var dataSource = [ShareType]()
 
     override func awakeFromNib() {
-        confirmButton.cornerRadius = 15
+        confirmButton.layer.cornerRadius = 15
         buttonBottom.constant = isIphoneX ? 34:0
 
         tableView.register(nibWithCellClass: ShareTableCell.self)

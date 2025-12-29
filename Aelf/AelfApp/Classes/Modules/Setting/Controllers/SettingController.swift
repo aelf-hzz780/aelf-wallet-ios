@@ -45,9 +45,9 @@ class SettingController: BaseController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        avatarImageView.cornerRadius = avatarImageView.height/2
-        avatarImageView.borderWidth = 1
-        avatarImageView.borderColor = UIColor.white
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height/2
+        avatarImageView.layer.borderWidth = 1
+        avatarImageView.layer.borderColor = UIColor.white.cgColor
         
         avatarImageView.hero.id = "AvatarID"
         nameLabel.hero.id = "UserNameID"

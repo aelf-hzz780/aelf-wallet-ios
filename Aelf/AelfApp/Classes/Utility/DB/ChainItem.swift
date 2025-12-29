@@ -65,12 +65,8 @@ struct ChainItem: Mappable,TableCodable {
         case crossChainContractAddress
         case transferCoins
 
-        static let objectRelationalMapping = TableBinding(CodingKeys.self)
-        
-        static var columnConstraintBindings:[CodingKeys:ColumnConstraintBinding]?{
-            return [
-                .identifier : ColumnConstraintBinding(isPrimary:true,isAutoIncrement:true),
-            ]
+        static let objectRelationalMapping = TableBinding(CodingKeys.self) {
+            BindColumnConstraint(.identifier, isPrimary: true, isAutoIncrement: true)
         }
     }
     

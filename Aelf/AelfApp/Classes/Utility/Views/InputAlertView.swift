@@ -67,7 +67,7 @@ class InputAlertView: MessageView {
     }
     
     override func awakeFromNib() {
-        confirmButton.cornerRadius = confirmButton.height/2
+        confirmButton.layer.cornerRadius = confirmButton.frame.height/2
     }
     
     var confirmAction: (() -> Void)?

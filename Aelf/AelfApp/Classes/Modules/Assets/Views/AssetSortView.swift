@@ -23,7 +23,7 @@ class AssetSortView: MessageView {
     var dataSource = [AssetSortType]()
 
     override func awakeFromNib() {
-        confirmButton.cornerRadius = 15
+        confirmButton.layer.cornerRadius = 15
         buttonBottom.constant = isIphoneX ? 34:0
 
     }

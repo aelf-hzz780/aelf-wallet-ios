@@ -45,9 +45,9 @@ class CameraView: UIViewController, CLLocationManagerDelegate, CameraManDelegate
 
   lazy var noCameraLabel: UILabel = { [unowned self] in
     let label = UILabel()
-    label.font = Configuration.noCameraFont
-    label.textColor = Configuration.noCameraColor
-    label.text = Configuration.noCameraTitle
+    label.font = ImagePickerConfiguration.noCameraFont
+    label.textColor = ImagePickerConfiguration.noCameraColor
+    label.text = ImagePickerConfiguration.noCameraTitle
     label.sizeToFit()
 
     return label
@@ -55,16 +55,16 @@ class CameraView: UIViewController, CLLocationManagerDelegate, CameraManDelegate
 
   lazy var noCameraButton: UIButton = { [unowned self] in
     let button = UIButton(type: .system)
-    let title = NSAttributedString(string: Configuration.settingsTitle,
+    let title = NSAttributedString(string: ImagePickerConfiguration.settingsTitle,
       attributes: [
-        NSAttributedString.Key.font : Configuration.settingsFont,
-        NSAttributedString.Key.foregroundColor : Configuration.settingsColor,
+        NSAttributedString.Key.font : ImagePickerConfiguration.settingsFont,
+        NSAttributedString.Key.foregroundColor : ImagePickerConfiguration.settingsColor,
       ])
 
     button.setAttributedTitle(title, for: UIControl.State())
     button.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 5.0, right: 10.0)
     button.sizeToFit()
-    button.layer.borderColor = Configuration.settingsColor.cgColor
+    button.layer.borderColor = ImagePickerConfiguration.settingsColor.cgColor
     button.layer.borderWidth = 1
     button.layer.cornerRadius = 4
     button.addTarget(self, action: #selector(settingsButtonDidTap), for: .touchUpInside)
@@ -90,11 +90,11 @@ class CameraView: UIViewController, CLLocationManagerDelegate, CameraManDelegate
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    if Configuration.recordLocation {
+    if ImagePickerConfiguration.recordLocation {
       locationManager = LocationManager()
     }
 
-    view.backgroundColor = Configuration.mainColor
+    view.backgroundColor = ImagePickerConfiguration.mainColor
 
     view.addSubview(containerView)
     containerView.addSubview(blurView)
@@ -124,7 +124,7 @@ class CameraView: UIViewController, CLLocationManagerDelegate, CameraManDelegate
   func setupPreviewLayer() {
     let layer = AVCaptureVideoPreviewLayer(session: cameraMan.session)
 
-    layer.backgroundColor = Configuration.mainColor.cgColor
+    layer.backgroundColor = ImagePickerConfiguration.mainColor.cgColor
     layer.autoreverses = true
     layer.videoGravity = AVLayerVideoGravity.resizeAspectFill
 

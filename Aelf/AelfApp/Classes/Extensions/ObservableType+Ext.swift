@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-extension ObservableType where E == VResult {
+extension ObservableType where Element == VResult {
 
     func mapObjects<T: Mappable>(_ map: T.Type, context: MapContext? = nil) -> Observable<[T]> {
         return flatMap({

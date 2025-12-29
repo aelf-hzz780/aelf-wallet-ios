@@ -51,13 +51,13 @@ extension Observable where Element: OptionalType {
 
 extension ObservableType {
 
-    func catchErrorJustComplete() -> Observable<E> {
-        return catchError { _ in
+    func catchErrorJustComplete() -> Observable<Element> {
+        return `catch` { _ in
             return Observable.empty()
         }
     }
 
-    func asDriverOnErrorJustComplete() -> Driver<E> {
+    func asDriverOnErrorJustComplete() -> Driver<Element> {
         return asDriver { error in
             assertionFailure("Error \(error)")
             return Driver.empty()

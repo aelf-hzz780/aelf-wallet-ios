@@ -64,7 +64,7 @@ class AccountExportController: BaseStaticTableController {
             break
         }
 
-        nextButton.cornerRadius = nextButton.height/2
+        nextButton.layer.cornerRadius = nextButton.frame.height/2
         textView.isEditable = false
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableView.automaticDimension

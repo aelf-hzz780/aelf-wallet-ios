@@ -31,7 +31,7 @@ extension CrossChainsViewModel: ViewModelType {
     func transform(input: CrossChainsViewModel.Input) -> CrossChainsViewModel.Output {
         
         let out = Output()
-        input.search.throttle(0.3).distinctUntilChanged().map({ [weak self] value -> [AssetItem] in
+        input.search.throttle(.milliseconds(300)).distinctUntilChanged().map({ [weak self] value -> [AssetItem] in
             guard let self = self else { return [] }
             return self.filterSearchResult(value)
         }).asObservable().bind(to: out.items).disposed(by: rx.disposeBag)

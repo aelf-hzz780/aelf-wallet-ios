@@ -65,6 +65,8 @@
 		3C3C95CF22A2749E007AB0C1 /* ImportMnemonicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C95CE22A2749E007AB0C1 /* ImportMnemonicViewModel.swift */; };
 		3C3C95DC22A4BE3F007AB0C1 /* WalletValidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C95D922A4BE3F007AB0C1 /* WalletValidate.swift */; };
 		3C3C95DD22A4BE3F007AB0C1 /* ValidatorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C95DA22A4BE3F007AB0C1 /* ValidatorError.swift */; };
+		0A86F84F14A44134A40CE621 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A86F84F14A44134A40CE620 /* Validator.swift */; };
+		61B85C1DBA764803AA55CF9A /* BIP39Mnemonic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B85C1DBA764803AA55CF99 /* BIP39Mnemonic.swift */; };
 		3C3C95E522A4BFDF007AB0C1 /* WalletLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C3C95E322A4BFDF007AB0C1 /* WalletLoadingView.xib */; };
 		3C3C95E622A4BFDF007AB0C1 /* WalletLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C95E422A4BFDF007AB0C1 /* WalletLoadingView.swift */; };
 		3C4824FB22E9AFE700554305 /* MarketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C4824F922E9AFE700554305 /* MarketCell.xib */; };
@@ -446,6 +448,8 @@
 		3C3C95CE22A2749E007AB0C1 /* ImportMnemonicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportMnemonicViewModel.swift; sourceTree = "<group>"; };
 		3C3C95D922A4BE3F007AB0C1 /* WalletValidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletValidate.swift; sourceTree = "<group>"; };
 		3C3C95DA22A4BE3F007AB0C1 /* ValidatorError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorError.swift; sourceTree = "<group>"; };
+		0A86F84F14A44134A40CE620 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		61B85C1DBA764803AA55CF99 /* BIP39Mnemonic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BIP39Mnemonic.swift; path = ../Crypto/BIP39Mnemonic.swift; sourceTree = "<group>"; };
 		3C3C95E322A4BFDF007AB0C1 /* WalletLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletLoadingView.xib; sourceTree = "<group>"; };
 		3C3C95E422A4BFDF007AB0C1 /* WalletLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletLoadingView.swift; sourceTree = "<group>"; };
 		3C4824F922E9AFE700554305 /* MarketCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarketCell.xib; sourceTree = "<group>"; };
@@ -875,6 +879,7 @@
 			children = (
 				3C3C95D922A4BE3F007AB0C1 /* WalletValidate.swift */,
 				3C3C95DA22A4BE3F007AB0C1 /* ValidatorError.swift */,
+				0A86F84F14A44134A40CE620 /* Validator.swift */,
 			);
 			path = Validate;
 			sourceTree = "<group>";
@@ -1738,6 +1743,7 @@
 				3C71281D22FAE82F00119D4A /* AElfBrowserView.swift */,
 				D2F4875A22B1041C00DD2902 /* AElfWallet.swift */,
 				D2F4875C22B1074C00DD2902 /* WalletAccount.swift */,
+				61B85C1DBA764803AA55CF99 /* BIP39Mnemonic.swift */,
 			);
 			path = AELFWallet;
 			sourceTree = "<group>";
@@ -1791,6 +1797,7 @@
 				3C9DE1B32296757000BB8C74 /* Frameworks */,
 				3C9DE1B42296757000BB8C74 /* Resources */,
 				FA8D620EC8C353B1A60178A5 /* [CP] Embed Pods Frameworks */,
+				6B01DEA2CDBF0D5E1738273F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1931,6 +1938,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6B01DEA2CDBF0D5E1738273F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AelfApp/Pods-AelfApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AelfApp/Pods-AelfApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AelfApp/Pods-AelfApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F1BDE6547B88B6A4FF04735A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2048,6 +2072,8 @@
 				D2F9239222C200C400BA92CF /* HelpDetailCell.swift in Sources */,
 				3C9706C522F82B1200551C31 /* SearchBarView.swift in Sources */,
 				D2F4875B22B1041D00DD2902 /* AElfWallet.swift in Sources */,
+				0A86F84F14A44134A40CE621 /* Validator.swift in Sources */,
+				61B85C1DBA764803AA55CF9A /* BIP39Mnemonic.swift in Sources */,
 				D2F9238D22C0EE4400BA92CF /* TransationDetailViewModel.swift in Sources */,
 				D2E1C40122A4BA9300C011E5 /* DataSources.swift in Sources */,
 				D2F4874D22AF787800DD2902 /* MarketViewModel.swift in Sources */,
@@ -2421,7 +2447,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2477,7 +2503,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2501,7 +2527,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/AElfApp/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2512,7 +2538,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AElfApp/Resources/AElfApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2531,7 +2557,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/AElfApp/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2541,7 +2567,7 @@
 				PRODUCT_NAME = "aelf Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AElfApp/Resources/AElfApp-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

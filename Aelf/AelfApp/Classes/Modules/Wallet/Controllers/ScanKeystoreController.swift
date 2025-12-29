@@ -119,11 +119,11 @@ class ScanKeystoreController: BaseController {
             return }
         guard let json = try? JSONSerialization.jsonObject(with: data, options: .init()) as? [String: Any] else { return }
         
-        if let name = json?["nickName"] as? String {
+        if let name = json["nickName"] as? String {
             nameLabel.text = name
         }
         
-        if let address = json?["address"] as? String {
+        if let address = json["address"] as? String {
             addressLabel.text = address
         }
         

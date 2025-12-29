@@ -8,7 +8,6 @@
 
 import Foundation
 import ObjectMapper
-import Moya_ObjectMapper
 
 struct VResult: Mappable {
 

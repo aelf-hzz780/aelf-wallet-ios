@@ -34,8 +34,8 @@ open class BottomContainerView: UIView {
 
   open lazy var doneButton: UIButton = { [unowned self] in
     let button = UIButton()
-    button.setTitle(Configuration.cancelButtonTitle, for: UIControl.State())
-    button.titleLabel?.font = Configuration.doneButton
+    button.setTitle(ImagePickerConfiguration.cancelButtonTitle, for: UIControl.State())
+    button.titleLabel?.font = ImagePickerConfiguration.doneButton
     button.addTarget(self, action: #selector(doneButtonDidPress(_:)), for: .touchUpInside)
 
     return button
@@ -45,7 +45,7 @@ open class BottomContainerView: UIView {
 
   lazy var topSeparator: UIView = { [unowned self] in
     let view = UIView()
-    view.backgroundColor = Configuration.backgroundColor
+    view.backgroundColor = ImagePickerConfiguration.backgroundColor
 
     return view
     }()
@@ -70,7 +70,7 @@ open class BottomContainerView: UIView {
       $0.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    backgroundColor = Configuration.backgroundColor
+    backgroundColor = ImagePickerConfiguration.backgroundColor
     stackView.accessibilityLabel = "Image stack"
     stackView.addGestureRecognizer(tapGestureRecognizer)
 
@@ -84,7 +84,7 @@ open class BottomContainerView: UIView {
   // MARK: - Action methods
 
   @objc func doneButtonDidPress(_ button: UIButton) {
-    if button.currentTitle == Configuration.cancelButtonTitle {
+    if button.currentTitle == ImagePickerConfiguration.cancelButtonTitle {
       delegate?.cancelButtonDidPress()
     } else {
       delegate?.doneButtonDidPress()

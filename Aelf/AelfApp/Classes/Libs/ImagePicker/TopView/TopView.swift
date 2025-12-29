@@ -26,7 +26,7 @@ class TopView: UIView {
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
         button.setTitleColor(UIColor.white, for: UIControl.State())
         button.setTitleColor(UIColor.white, for: .highlighted)
-        button.titleLabel?.font = Configuration.flashButton
+        button.titleLabel?.font = ImagePickerConfiguration.flashButton
         button.addTarget(self, action: #selector(flashButtonDidPress(_:)), for: .touchUpInside)
         button.contentHorizontalAlignment = .left
 
@@ -51,7 +51,7 @@ class TopView: UIView {
 
         var buttons: [UIButton] = [flashButton]
 
-        if Configuration.canRotateCamera {
+        if ImagePickerConfiguration.canRotateCamera {
             buttons.append(rotateCamera)
         }
 

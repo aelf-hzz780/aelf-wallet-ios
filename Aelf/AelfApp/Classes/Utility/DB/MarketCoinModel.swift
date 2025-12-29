@@ -81,12 +81,8 @@ class MarketCoinModel : Mappable,TableCodable {
 
         case favouriteIndex
 
-        static let objectRelationalMapping = TableBinding(CodingKeys.self)
-
-        static var columnConstraintBindings:[CodingKeys:ColumnConstraintBinding]?{
-            return [
-                .identifier : ColumnConstraintBinding(isPrimary:true,isAutoIncrement:false),
-            ]
+        static let objectRelationalMapping = TableBinding(CodingKeys.self) {
+            BindColumnConstraint(.identifier, isPrimary: true, isAutoIncrement: false)
         }
     }
     
@@ -107,7 +103,7 @@ extension MarketCoinModel {
             offset = (page - 1) * 10
         }
         
-        let order = [(MarketCoinModel.Properties.favouriteIndex).asOrder(by: .ascending)]
+        let order = [(MarketCoinModel.Properties.favouriteIndex).order(.ascending)]
         let items: [MarketCoinModel]? = DBManager.getObjects(table: MarketCoinModel.className,
                                                              where: nil,
                                                              orderBy: order,

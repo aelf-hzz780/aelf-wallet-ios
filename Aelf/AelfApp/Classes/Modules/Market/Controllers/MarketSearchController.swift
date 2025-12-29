@@ -8,7 +8,6 @@
 
 import UIKit
 import ObjectMapper
-import Moya_ObjectMapper
 
 class MarketSearchController: BaseTableViewController {
 

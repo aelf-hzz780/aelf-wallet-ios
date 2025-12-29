@@ -38,8 +38,8 @@ class VerifyFailedAlertView: MessageView {
         super.awakeFromNib()
 
         self.frame = screenBounds
-        cancelButton.cornerRadius = cancelButton.height/2
-        tryAgainButton.cornerRadius = tryAgainButton.height/2
+        cancelButton.layer.cornerRadius = cancelButton.frame.height/2
+        tryAgainButton.layer.cornerRadius = tryAgainButton.frame.height/2
 
         if BioMetricAuthenticator.shared.faceIDAvailable() {
             titleLabel?.text = "Fingerprint Verfication Failed".localized()

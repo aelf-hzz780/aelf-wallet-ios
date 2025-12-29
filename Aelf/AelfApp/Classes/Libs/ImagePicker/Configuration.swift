@@ -1,6 +1,6 @@
 import UIKit
 
-public struct Configuration {
+public struct ImagePickerConfiguration {
 
   // MARK: Colors
 

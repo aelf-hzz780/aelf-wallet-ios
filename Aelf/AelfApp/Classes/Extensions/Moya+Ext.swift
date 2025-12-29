@@ -8,7 +8,7 @@
 
 import Foundation
 import Moya
-import Moya_ObjectMapper
+import ObjectMapper
 
 typealias ResultCompletion = (_ result:VResult) -> Void
 

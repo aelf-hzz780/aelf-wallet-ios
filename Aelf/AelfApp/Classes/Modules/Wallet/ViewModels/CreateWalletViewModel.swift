@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Validator
+// Using local Validator implementation
 
 class CreateWalletViewModel: BaseWalletViewModel {
 

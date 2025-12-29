@@ -10,15 +10,14 @@ import Foundation
 import Moya
 
 #if DEBUG
-let assetProvider = MoyaProvider<AssetAPI>(endpointClosure:MoyaProvider.JSONEndpointMapping,
-                                           manager: BaseConfig.manager,
-                                           plugins: [NetworkLoggerPlugin(verbose: true,
-                                                                         responseDataFormatter: BaseConfig.jsonFormatter),
+let assetProvider = MoyaProvider<AssetAPI>(endpointClosure: MoyaProvider.JSONEndpointMapping,
+                                           session: BaseConfig.session,
+                                           plugins: [NetworkLoggerPlugin(configuration: .init(logOptions: .verbose)),
                                                      BaseConfig.networkActivityPlugin])
 #else
 
-let assetProvider = MoyaProvider<AssetAPI>(endpointClosure:MoyaProvider.JSONEndpointMapping,
-                                           manager: BaseConfig.manager,
+let assetProvider = MoyaProvider<AssetAPI>(endpointClosure: MoyaProvider.JSONEndpointMapping,
+                                           session: BaseConfig.session,
                                            plugins: [BaseConfig.networkActivityPlugin])
 #endif
 

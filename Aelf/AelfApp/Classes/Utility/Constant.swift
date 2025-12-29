@@ -6,17 +6,42 @@
 //  Copyright © 2019 AELF. All rights reserved.
 //
 
+import UIKit
+
 // 屏幕宽高
 let screenBounds = UIScreen.main.bounds
 let screenWidth = screenBounds.width
 let screenHeight = screenBounds.height
 
-let isIphoneX = UIApplication.shared.statusBarFrame.height == 44
+// Helper to get safe area insets for modern iOS
+var safeAreaInsets: UIEdgeInsets {
+    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+          let window = windowScene.windows.first else {
+        return .zero
+    }
+    return window.safeAreaInsets
+}
 
-let iPHONE_NAVBAR_HEIGHT :CGFloat = isIphoneX ? 88:64
-let iPHONE_TABBAR_HEIGHT :CGFloat = isIphoneX ? 83:49
-let iPHONE_STATUS_HEIGHT :CGFloat = isIphoneX ? 44:20
-let iPHONE_BOTTOM_HEIGHT :CGFloat = isIphoneX ? 34:0
+// Check if device has notch (iPhone X and later)
+var isIphoneX: Bool {
+    return safeAreaInsets.bottom > 0
+}
+
+var iPHONE_NAVBAR_HEIGHT: CGFloat {
+    return isIphoneX ? 88 : 64
+}
+
+var iPHONE_TABBAR_HEIGHT: CGFloat {
+    return isIphoneX ? 83 : 49
+}
+
+var iPHONE_STATUS_HEIGHT: CGFloat {
+    return safeAreaInsets.top > 0 ? safeAreaInsets.top : 20
+}
+
+var iPHONE_BOTTOM_HEIGHT: CGFloat {
+    return safeAreaInsets.bottom
+}
 
 //let itunesURLString = "https://itunes.apple.com/cn/app/id\(appStoreID)"
 

@@ -107,7 +107,7 @@ open class ImagePickerController: UIViewController {
     view.sendSubviewToBack(volumeView)
 
     view.backgroundColor = UIColor.white
-    view.backgroundColor = Configuration.mainColor
+    view.backgroundColor = ImagePickerConfiguration.mainColor
 
     cameraController.view.addGestureRecognizer(panGestureRecognizer)
 
@@ -177,15 +177,15 @@ open class ImagePickerController: UIViewController {
   }
 
   func presentAskPermissionAlert() {
-    let alertController = UIAlertController(title: Configuration.requestPermissionTitle, message: Configuration.requestPermissionMessage, preferredStyle: .alert)
+    let alertController = UIAlertController(title: ImagePickerConfiguration.requestPermissionTitle, message: ImagePickerConfiguration.requestPermissionMessage, preferredStyle: .alert)
 
-    let alertAction = UIAlertAction(title: Configuration.OKButtonTitle, style: .default) { _ in
+    let alertAction = UIAlertAction(title: ImagePickerConfiguration.OKButtonTitle, style: .default) { _ in
       if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
         UIApplication.shared.openURL(settingsURL)
       }
     }
 
-    let cancelAction = UIAlertAction(title: Configuration.cancelButtonTitle, style: .cancel) { _ in
+    let cancelAction = UIAlertAction(title: ImagePickerConfiguration.cancelButtonTitle, style: .cancel) { _ in
       self.dismiss(animated: true, completion: nil)
     }
 
@@ -258,7 +258,7 @@ open class ImagePickerController: UIViewController {
     guard let sender = notification.object as? ImageStack else { return }
 
     let title = !sender.assets.isEmpty ?
-      Configuration.doneButtonTitle : Configuration.cancelButtonTitle
+      ImagePickerConfiguration.doneButtonTitle : ImagePickerConfiguration.cancelButtonTitle
     bottomContainer.doneButton.setTitle(title, for: UIControl.State())
   }
 
@@ -308,7 +308,7 @@ open class ImagePickerController: UIViewController {
     bottomContainer.pickerButton.isEnabled = enabled
     bottomContainer.tapGestureRecognizer.isEnabled = enabled
     topView.flashButton.isEnabled = enabled
-    topView.rotateCamera.isEnabled = Configuration.canRotateCamera
+    topView.rotateCamera.isEnabled = ImagePickerConfiguration.canRotateCamera
   }
 
   fileprivate func isBelowImageLimit() -> Bool {
@@ -324,7 +324,7 @@ open class ImagePickerController: UIViewController {
       self.cameraController.takePicture { self.isTakingPicture = false }
     }
 
-    if Configuration.collapseCollectionViewWhileShot {
+    if ImagePickerConfiguration.collapseCollectionViewWhileShot {
       collapseGalleryView(action)
     } else {
       action()

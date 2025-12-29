@@ -1,5 +1,8 @@
 # Xcode
 .DS_Store
+
+# Cursor IDE
+.cursor/
 */build/*
 *.pbxuser
 !default.pbxuser

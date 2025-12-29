@@ -19,7 +19,7 @@ class SecurityWarnView: MessageView {
     var confirmAction: (() -> Void)?
     
     override func awakeFromNib() {
-        confirmButton.cornerRadius = 15
+        confirmButton.layer.cornerRadius = 15
         buttonbottom.constant = isIphoneX ? 34:15
     }
     // Security Warning

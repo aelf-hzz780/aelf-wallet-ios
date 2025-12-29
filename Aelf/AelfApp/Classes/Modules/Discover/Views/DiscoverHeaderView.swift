@@ -17,7 +17,7 @@ class DiscoverHeaderView: UIView {
     @IBOutlet weak var pageView: FSPagerView! {
         didSet {
             self.pageView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: FSPagerViewCell.className)
-            self.pageView.cornerRadius = 10
+            self.pageView.layer.cornerRadius = 10
             self.pageView.decelerationDistance = FSPagerView.automaticDistance
         }
     }

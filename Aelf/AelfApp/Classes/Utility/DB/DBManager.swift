@@ -15,7 +15,7 @@ class DBManager {
 
     fileprivate static let shared = DBManager()
 
-    private let dataBase = Database(withPath: dbPath)
+    private let dataBase = Database(at: dbPath)
 
     private init() {
 
@@ -50,7 +50,7 @@ class DBManager {
     @discardableResult
     static func insert<T: TableEncodable>(objects: [T]) -> Swift.Error? {
         do {
-            try shared.dataBase.insert(objects: objects, intoTable: T.className)
+            try shared.dataBase.insert(objects, intoTable: T.className)
         } catch {
             debugPrint(" insert obj error \(error.localizedDescription)")
             return error

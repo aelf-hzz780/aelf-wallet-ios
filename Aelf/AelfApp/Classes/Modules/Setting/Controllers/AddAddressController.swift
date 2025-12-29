@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Validator
+// Using local Validator implementation
 
 struct EditContactItem {
     var name: String

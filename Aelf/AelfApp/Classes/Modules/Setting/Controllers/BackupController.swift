@@ -44,7 +44,7 @@ class BackupController: BaseStaticTableController {
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.reloadData()
 
-        nextButton.cornerRadius = nextButton.height/2
+        nextButton.layer.cornerRadius = nextButton.frame.height/2
 
         switch backType {
         case .keyStore:

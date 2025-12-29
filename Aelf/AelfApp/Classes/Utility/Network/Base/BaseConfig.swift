@@ -49,28 +49,22 @@ private enum APIEnv: Int {
 struct BaseConfig {
 
     static var BaseURL: URL {
-        guard let url = try? APIEnv(rawValue: appEnv)?.appHost.asURL() else {
+        guard let env = APIEnv(rawValue: appEnv),
+              let url = try? env.appHost.asURL() else {
             fatalError("请检查 URL 环境配置。")
         }
-        return url!
+        return url
     }
 
     static var headers: [String : String]? {
         return ["Content-type":"application/x-www-form-urlencoded; charset=utf-8"]
     }
 
-    static let networkActivityPlugin = NetworkActivityPlugin { (change,_)
-        -> Void in
-        switch(change) {
-        case .ended:
-            DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
-        case .began:
-            DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            }
-        }
+    // Network activity indicator is deprecated in iOS 13+
+    // Using empty plugin as placeholder for compatibility
+    static let networkActivityPlugin = NetworkActivityPlugin { (change, _) -> Void in
+        // isNetworkActivityIndicatorVisible is deprecated in iOS 13+
+        // No-op for modern iOS versions
     }
 
     static func baseParameters() -> [String:String] {
@@ -101,15 +95,14 @@ struct BaseConfig {
         }
     }
 
-    static let manager: Moya.Manager = {
+    // Updated for Alamofire 5.x / Moya 15.x
+    static let session: Session = {
         let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+        configuration.headers = .default
         configuration.timeoutIntervalForRequest = 15 // as seconds, you can set your request timeout
         configuration.timeoutIntervalForResource = 15 // as seconds, you can set your resource timeout
         configuration.requestCachePolicy = .useProtocolCachePolicy
-        let manager = Manager(configuration: configuration)
-        return manager
+        return Session(configuration: configuration)
     }()
 
 }
-

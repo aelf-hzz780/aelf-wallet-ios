@@ -22,9 +22,9 @@ class ChainListCell: UITableViewCell {
         arrowImgView?.image = UIImage(named: "arrow-right")?.template
         arrowImgView.tintColor = .white
         
-        iconImgView.cornerRadius = iconImgView.height/2
-        iconImgView.borderWidth = 0.5
-        iconImgView.borderColor = .white
+        iconImgView.layer.cornerRadius = iconImgView.frame.height/2
+        iconImgView.layer.borderWidth = 0.5
+        iconImgView.layer.borderColor = UIColor.white.cgColor
     }
 
     var item: ChainItem? {

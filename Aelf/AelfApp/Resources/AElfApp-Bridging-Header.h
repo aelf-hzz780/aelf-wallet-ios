@@ -19,7 +19,7 @@
 // DZN
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-// Umeng
+// Umeng (Updated for new SDK structure)
 #import <UMCommon/UMCommon.h>
-#import <UMAnalytics/MobClick.h>
+#import <UMCommon/MobClick.h>
 #import <UMPush/UMessage.h>

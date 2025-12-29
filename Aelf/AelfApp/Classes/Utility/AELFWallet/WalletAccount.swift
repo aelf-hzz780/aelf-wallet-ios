@@ -110,17 +110,21 @@ struct WalletResult: Mappable {
     
 }
 
-class WalletAccount : NSObject,NSCoding{
-    var accoutName : String
-    var address : String
-    var privateKey : String
-    var mnemonic : String
-    var keyStore : String
-    var pwd : String
-
-    var hint : String
-    var publicKey : String
-    var signedAddress : String
+class WalletAccount: NSObject, NSSecureCoding {
+    
+    // Required for NSSecureCoding
+    static var supportsSecureCoding: Bool { return true }
+    
+    var accoutName: String
+    var address: String
+    var privateKey: String
+    var mnemonic: String
+    var keyStore: String
+    var pwd: String
+    var hint: String
+    var publicKey: String
+    var signedAddress: String
+    
     required override init() {
         address = ""
         privateKey = ""
@@ -134,38 +138,34 @@ class WalletAccount : NSObject,NSCoding{
     }
     
     /**
-     * NSCoding required initializer.
-     * Fills the data from the passed decoder
+     * NSSecureCoding required initializer.
+     * Fills the data from the passed decoder using secure decoding
      */
-    @objc required init(coder aDecoder: NSCoder)
-    {
-        publicKey = aDecoder.decodeObject(forKey: "publicKey") as? String ?? ""
-        signedAddress = aDecoder.decodeObject(forKey: "signedAddress") as? String ?? ""
-        address = aDecoder.decodeObject(forKey: "address") as? String ?? ""
-        privateKey = aDecoder.decodeObject(forKey: "privateKey") as? String ?? ""
-        mnemonic = aDecoder.decodeObject(forKey: "mnemonic") as? String ?? ""
-        keyStore = aDecoder.decodeObject(forKey: "keyStore") as? String ?? ""
-        pwd = aDecoder.decodeObject(forKey: "pwd") as? String ?? ""
-        accoutName = aDecoder.decodeObject(forKey: "accoutName") as? String ?? ""
-        hint = aDecoder.decodeObject(forKey: "hint") as? String ?? ""
+    @objc required init?(coder aDecoder: NSCoder) {
+        publicKey = aDecoder.decodeObject(of: NSString.self, forKey: "publicKey") as String? ?? ""
+        signedAddress = aDecoder.decodeObject(of: NSString.self, forKey: "signedAddress") as String? ?? ""
+        address = aDecoder.decodeObject(of: NSString.self, forKey: "address") as String? ?? ""
+        privateKey = aDecoder.decodeObject(of: NSString.self, forKey: "privateKey") as String? ?? ""
+        mnemonic = aDecoder.decodeObject(of: NSString.self, forKey: "mnemonic") as String? ?? ""
+        keyStore = aDecoder.decodeObject(of: NSString.self, forKey: "keyStore") as String? ?? ""
+        pwd = aDecoder.decodeObject(of: NSString.self, forKey: "pwd") as String? ?? ""
+        accoutName = aDecoder.decodeObject(of: NSString.self, forKey: "accoutName") as String? ?? ""
+        hint = aDecoder.decodeObject(of: NSString.self, forKey: "hint") as String? ?? ""
     }
     
     /**
      * NSCoding required method.
      * Encodes mode properties into the decoder
      */
-    @objc func encode(with aCoder: NSCoder)
-    {
-        aCoder.encode(publicKey, forKey: "publicKey")
-        aCoder.encode(signedAddress, forKey: "signedAddress")
-        aCoder.encode(address, forKey: "address")
-        aCoder.encode(privateKey, forKey: "privateKey")
-        aCoder.encode(mnemonic, forKey: "mnemonic")
-        aCoder.encode(keyStore, forKey: "keyStore")
-        aCoder.encode(pwd, forKey: "pwd")
-        aCoder.encode(accoutName, forKey: "accoutName")
-        aCoder.encode(hint, forKey: "hint")
+    @objc func encode(with aCoder: NSCoder) {
+        aCoder.encode(publicKey as NSString, forKey: "publicKey")
+        aCoder.encode(signedAddress as NSString, forKey: "signedAddress")
+        aCoder.encode(address as NSString, forKey: "address")
+        aCoder.encode(privateKey as NSString, forKey: "privateKey")
+        aCoder.encode(mnemonic as NSString, forKey: "mnemonic")
+        aCoder.encode(keyStore as NSString, forKey: "keyStore")
+        aCoder.encode(pwd as NSString, forKey: "pwd")
+        aCoder.encode(accoutName as NSString, forKey: "accoutName")
+        aCoder.encode(hint as NSString, forKey: "hint")
     }
-
-    
 }

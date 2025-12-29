@@ -56,7 +56,7 @@ extension MarketSearchViewModel: ViewModelType {
 //            .disposed(by: rx.disposeBag)
 
         input.searchText
-            .throttle(1)
+            .throttle(.seconds(1))
             .map({ [weak self] value -> String? in
                 guard self != nil else {return ""}
                 

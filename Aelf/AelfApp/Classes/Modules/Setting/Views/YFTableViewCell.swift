@@ -314,10 +314,10 @@ extension UIButton {
                      fontSize:CGFloat = 15)
     {
         self.init(type: type)
-        self.setTitle(title, for: UIControlState.init(rawValue: 0))
-        self.setTitleColor(titleColor, for: UIControlState.init(rawValue: 0))
+        self.setTitle(title, for: UIControl.State.init(rawValue: 0))
+        self.setTitleColor(titleColor, for: UIControl.State.init(rawValue: 0))
         self.backgroundColor = backgroundColor;
         self.titleLabel?.font = UIFont.systemFont(ofSize: fontSize);
-        self.setImage(image, for: UIControlState.init(rawValue: 0))
+        self.setImage(image, for: UIControl.State.init(rawValue: 0))
     }
 }

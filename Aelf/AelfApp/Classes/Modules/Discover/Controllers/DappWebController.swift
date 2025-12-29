@@ -221,8 +221,8 @@ extension DappWebController {
                 
                 logDebug("\n--------------- General KeyPair ------------- 生成的公钥：\(wallet.publicKey)\n私钥：\(wallet.privateKey)\n")
                 
-                let random = String(randomOfLength: 32)
-                let hexRandom = random.data(using: .utf8)!.hex
+                let random = String.random(ofLength: 32)
+                let hexRandom = random.data(using: .utf8)!.map { String(format: "%02x", $0) }.joined()
                 logInfo("产生的随机数：\(random)")
                 logInfo("随机数的 Hex ：\(hexRandom)")
                 wallet.sign(message: random) { [weak self] signatureRandom in

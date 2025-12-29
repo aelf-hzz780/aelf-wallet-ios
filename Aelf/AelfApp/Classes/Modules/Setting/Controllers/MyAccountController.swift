@@ -53,9 +53,9 @@ class MyAccountController: BaseController {
         avatarImageView.hero.id = "AvatarID"
         nameButton.hero.id = "UserNameID"
 
-        avatarImageView.cornerRadius = avatarImageView.height/2
-        avatarImageView.borderWidth = 0.5
-        avatarImageView.borderColor = UIColor.white
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height/2
+        avatarImageView.layer.borderWidth = 0.5
+        avatarImageView.layer.borderColor = UIColor.white.cgColor
         avatarImageView.isUserInteractionEnabled = true
 
         copyButton.isHidden = true
@@ -94,14 +94,14 @@ class MyAccountController: BaseController {
 
     @objc func openUserPhotos() {
 
-        Configuration.doneButtonTitle = "Done".localized()
-        Configuration.cancelButtonTitle = "Cancel".localized()
-        Configuration.OKButtonTitle = "OK".localized()
-        Configuration.noImagesTitle = "Sorry! There are no images here!".localized()
-        Configuration.requestPermissionTitle = "Permission denied".localized()
-        Configuration.settingsTitle = "Settings".localized()
-        Configuration.noCameraTitle = "No images available".localized()
-        Configuration.requestPermissionMessage = "Please, allow the application to access to your photo library".localized()
+        ImagePickerConfiguration.doneButtonTitle = "Done".localized()
+        ImagePickerConfiguration.cancelButtonTitle = "Cancel".localized()
+        ImagePickerConfiguration.OKButtonTitle = "OK".localized()
+        ImagePickerConfiguration.noImagesTitle = "Sorry! There are no images here!".localized()
+        ImagePickerConfiguration.requestPermissionTitle = "Permission denied".localized()
+        ImagePickerConfiguration.settingsTitle = "Settings".localized()
+        ImagePickerConfiguration.noCameraTitle = "No images available".localized()
+        ImagePickerConfiguration.requestPermissionMessage = "Please, allow the application to access to your photo library".localized()
 
         let imagePicker = ImagePickerController()
         imagePicker.imageLimit = 1

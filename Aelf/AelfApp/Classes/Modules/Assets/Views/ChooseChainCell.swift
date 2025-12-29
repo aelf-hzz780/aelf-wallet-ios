@@ -20,9 +20,9 @@ class ChooseChainCell: BaseTableCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        iconImgView.cornerRadius = iconImgView.height/2
-        iconImgView.borderWidth = 0.5
-        iconImgView.borderColor = .white
+        iconImgView.layer.cornerRadius = iconImgView.frame.height/2
+        iconImgView.layer.borderWidth = 0.5
+        iconImgView.layer.borderColor = UIColor.white.cgColor
     }
 
     var item: AssetItem? {

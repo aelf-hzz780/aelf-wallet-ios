@@ -74,19 +74,19 @@ extension ChainTitleView {
 
         if mode == .chain {
             setTitle(App.chainID)
-            borderWidth = 1
-            borderColor = UIColor(hexString: "F3F5F9")
+            layer.borderWidth = 1
+            layer.borderColor = UIColor(hexString: "F3F5F9")?.cgColor
             layer.masksToBounds = true
             
             titleButton.sizeToFit()
-            titleButton.width += 30
-            titleButton.height = 25
-            size = titleButton.size
-            layer.cornerRadius = titleButton.height/2
+            titleButton.frame.size.width += 30
+            titleButton.frame.size.height = 25
+            size = titleButton.frame.size
+            layer.cornerRadius = titleButton.frame.height/2
             titleButton.isUserInteractionEnabled = true
         } else {
             setTitle("Assets".localized(), showImage: false)
-            borderColor = UIColor.clear
+            layer.borderColor = UIColor.clear.cgColor
             size = largeSize
             titleButton.isUserInteractionEnabled = false
         }
@@ -98,7 +98,7 @@ extension ChainTitleView {
     
     func masterStyle() {
         backgroundColor = UIColor.master
-        titleButton.borderWidth = 0
+        titleButton.layer.borderWidth = 0
         
     }
 }

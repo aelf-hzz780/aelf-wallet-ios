@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Validator
+// Using local Validator implementation
 
 struct WalletInputLimit {
     // 如果 nameRange = Range(1...20)， 则打印 nameRange 的 lowerBound - upperBound 是 1 - 21，故使用 upperBound 时候需要 - 1

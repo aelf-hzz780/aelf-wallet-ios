@@ -6,7 +6,6 @@
 //  Copyright © 2019 AELF. All rights reserved.
 //
 
-import BitcoinKit
 import KeychainSwift
 
 public final class AElfWallet {
@@ -36,17 +35,18 @@ public final class AElfWallet {
     }
     
     private func loadKeyChainWallet() -> WalletAccount {
-        let result = KeychainSwift().getData("aelf_account")
-        if (result != nil) {
-            do {
-                if let loadedStrings = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(result!) as? WalletAccount {
-                    return loadedStrings
-                }
-            } catch {
-                logDebug("Couldn't read file: \(error)")
-            }
+        guard let data = KeychainSwift().getData("aelf_account") else {
+            return WalletAccount()
         }
-        return WalletAccount.init()
+        do {
+            // Use modern unarchiving API
+            if let loadedAccount = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [WalletAccount.self, NSString.self], from: data) as? WalletAccount {
+                return loadedAccount
+            }
+        } catch {
+            logDebug("Couldn't read file: \(error)")
+        }
+        return WalletAccount()
     }
     static func isAELFAddress(_ address:String) -> Bool {
         
@@ -256,8 +256,13 @@ extension AElfWallet {
     
     @discardableResult
     static func saveAccount(account: WalletAccount) -> Bool {
-        let data = NSKeyedArchiver.archivedData(withRootObject: account)
-        return KeychainSwift().set(data, forKey: "aelf_account")
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: account, requiringSecureCoding: true)
+            return KeychainSwift().set(data, forKey: "aelf_account")
+        } catch {
+            logDebug("Failed to archive account: \(error)")
+            return false
+        }
     }
     
     @discardableResult

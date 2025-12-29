@@ -15,7 +15,7 @@ extension UIButton {
     }
 
     private func set(image anImage: UIImage?, title: String,
-                   titlePosition: UIView.ContentMode, additionalSpacing: CGFloat, state: UIControlState) {
+                   titlePosition: UIView.ContentMode, additionalSpacing: CGFloat, state: UIControl.State) {
         self.imageView?.contentMode = .center
         self.setImage(anImage, for: state)
 

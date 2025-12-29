@@ -222,13 +222,10 @@ extension AppDelegate {
         UMConfigure.setLogEnabled(true)
         #endif
         
-        /// 友盟統計
-        MobClick.setScenarioType(eScenarioType.E_UM_NORMAL)
+        /// 友盟統計 - setScenarioType removed in new UMCommon SDK
         
-        /// iOS 10 以上
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().delegate = self
-        }
+        // Set notification delegate (iOS 10+ is required, we target iOS 13+)
+        UNUserNotificationCenter.current().delegate = self
         
         /// 友盟推送配置
         let entity = UMessageRegisterEntity.init()
@@ -244,25 +241,12 @@ extension AppDelegate {
     }
     
     
-    /// 拿到 Device Token
+    /// Handle Device Token registration
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         UMessage.registerDeviceToken(deviceToken)
         
-        var deviceId = ""
-        
-        if #available(iOS 13, *) {
-            let bytes = [UInt8](deviceToken)
-            for item in bytes {
-                deviceId += String(format:"%02x", item&0x000000FF)
-            }
-        } else {
-            let device = NSData(data: deviceToken)
-            
-            deviceId = device.description
-                .replacingOccurrences(of:"<", with:"")
-                .replacingOccurrences(of:">", with:"")
-                .replacingOccurrences(of:" ", with:"")
-        }
+        // Convert device token to hex string (iOS 13+ method)
+        let deviceId = deviceToken.map { String(format: "%02x", $0) }.joined()
         logDebug("DeviceToken：\(deviceId)")
         
         UserDefaults.standard.set(deviceId, forKey: "deviceId")
@@ -287,61 +271,51 @@ extension AppDelegate {
         UMessage.didReceiveRemoteNotification(userInfo)
     }
     
-    /// iOS10 以前接收的方法
-    func application(_ application: UIApplication,
-                     handleActionWithIdentifier identifier: String?,
-                     for notification: UILocalNotification,
-                     withResponseInfo responseInfo: [AnyHashable: Any],
-                     completionHandler: @escaping () -> Void) {
-        /// 这个方法用来做action点击的统计
-        UMessage.sendClickReport(forRemoteNotification: responseInfo)
-    }
+    // Note: UILocalNotification is deprecated in iOS 10+
+    // Since we target iOS 13+, we only use UNUserNotificationCenter
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
-    //iOS10以下使用这两个方法接收通知，
+    // Handle background notification fetch
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable : Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        //关闭友盟自带的弹出框
+        // Close Umeng's built-in popup
         UMessage.setAutoAlert(false)
         logDebug("push userInfo ：\(userInfo)")
-        if  UIDevice.current.systemVersion < "10" {
-            logDebug("push userInfo ：\(userInfo)")
-            UMessage.didReceiveRemoteNotification(userInfo)
-            //            self.umUserInfo = userInfo;
-            
-            completionHandler(UIBackgroundFetchResult.newData)
-        }
+        UMessage.didReceiveRemoteNotification(userInfo)
+        completionHandler(UIBackgroundFetchResult.newData)
     }
     
-    //iOS10新增：处理前台收到通知的代理方法
-    @available(iOS 10.0, *)
+    // Handle foreground notification presentation
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         let userInfo = notification.request.content.userInfo
         if notification.request.trigger is UNPushNotificationTrigger {
-            //应用处于前台时的远程推送接受
-            //关闭友盟自带的弹出框
+            // Remote push received while app in foreground
+            // Close Umeng's built-in popup
             UMessage.setAutoAlert(false)
-            //必须加这句代码
+            // Required call
             UMessage.didReceiveRemoteNotification(userInfo)
             logDebug("UNPushNotificationTrigger userInfo ：\(userInfo)")
         } else {
-            //应用处于后台时的本地推送接受
+            // Local notification received while app in background
             logDebug("UNUserNotificationCenter ：\(userInfo)")
         }
         
-        //当应用处于前台时提示设置，需要哪个可以设置哪一个
-        completionHandler(UNNotificationPresentationOptions(rawValue: UNNotificationPresentationOptions.RawValue(UInt8(UNNotificationPresentationOptions.sound.rawValue) | UInt8(UNNotificationPresentationOptions.badge.rawValue) | UInt8(UNNotificationPresentationOptions.alert.rawValue))))
+        // Configure foreground notification presentation options
+        if #available(iOS 14.0, *) {
+            completionHandler([.sound, .badge, .banner])
+        } else {
+            completionHandler([.sound, .badge, .alert])
+        }
     }
     
-    //iOS10新增：处理后台点击通知的代理方法
-    @available(iOS 10.0, *)
+    // Handle notification tap from background
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -401,16 +375,23 @@ extension AppDelegate {
     func loadLaunchScreenAnimation() {
         
         guard let vc = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController(),
-            let view = vc.view,let mainWindow = UIApplication.shared.keyWindow else {
-                return
+              let view = vc.view else {
+            return
         }
+        
+        // Get the key window using scene-based API for iOS 13+
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let mainWindow = windowScene.windows.first else {
+            return
+        }
+        
         view.frame = mainWindow.bounds
         mainWindow.addSubview(view)
         
         UIView.animate(withDuration: 0.6, delay: 0.5, options: .beginFromCurrentState, animations: {
             view.alpha = 0
             view.layer.transform = CATransform3DScale(CATransform3DIdentity, 1.5, 1.5, 1)
-        }) { (b) in
+        }) { _ in
             view.removeFromSuperview()
         }
     }

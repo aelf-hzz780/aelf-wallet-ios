@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import Validator
+// Using local Validator implementation
 
 struct ValidatorError: ValidationError {
-    var message: String
+    public var message: String
 
     public init(message: String) {
         self.message = message

@@ -42,7 +42,7 @@ class ExportQRCodeController: BaseStaticTableController {
         activityView.hidesWhenStopped = true
         nextButton.isUserInteractionEnabled = false
         nextButton.alpha = 0.5
-        nextButton.cornerRadius = nextButton.height/2
+        nextButton.layer.cornerRadius = nextButton.frame.height/2
 
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 100
