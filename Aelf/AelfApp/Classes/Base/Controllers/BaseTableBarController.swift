@@ -10,7 +10,7 @@ import UIKit
 import ESTabBarController_swift
 import Hero
 
-private let isShowDiscover = true
+private let isShowDiscover = false
 
 class BaseTableBarController: ESTabBarController {
     
